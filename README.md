@@ -38,9 +38,9 @@ https://github.com/kaarthik108/snowChat/assets/53030784/24105e23-69d3-4676-b6d6-
    cd snowchat
    pip install -r requirements.txt
 
-3. Set up your `OPENAI_API_KEY`, `ACCOUNT`, `USER_NAME`, `PASSWORD`, `ROLE`, `DATABASE`, `SCHEMA`,  `WAREHOUSE`, `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` in project directory `secrets.toml`.
+3. Set up your `OPENAI_API_KEY`, `ACCOUNT`, `USER_NAME`, `PASSWORD`, `ROLE`, `DATABASE`, `SCHEMA`,  `WAREHOUSE`, `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` in project directory `secrets.toml`. Create an supabase account to get supabase url and api key
 
-4. Make you're schemas and store them in docs folder that matches you're database.
+4. Make you're schemas and store them in docs folder that matches you're database. Update schema in `/sql`,`/docs` and `snowChat/utils/snowddl.py`
 
 5. Create supabase extention, table and function from the supabase/scripts.sql.
 
