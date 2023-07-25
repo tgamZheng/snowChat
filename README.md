@@ -8,11 +8,9 @@
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://snowchat.streamlit.app/)
 
-![pika-1688625419232-1x](https://github.com/kaarthik108/snowChat/assets/53030784/839d6c2d-4031-43fb-999d-da5ebaa6a328)
-
+![388](https://github.com/kaarthik108/snowChat/assets/53030784/dd864e87-1f1f-40ac-8324-2e9f023b3200)
 
 **snowChat** is an intuitive and user-friendly application that allows users to interact with their Snowflake data using natural language queries. Type in your questions or requests, and SnowChat will generate the appropriate SQL query and return the data you need. No more complex SQL queries or digging through tables - SnowChat makes it easy to access your data! By bringing data one step closer, SnowChat empowers users to make data-driven decisions faster and more efficiently, reducing the barriers between users and the insights they seek.
-
 
 https://github.com/kaarthik108/snowChat/assets/53030784/24105e23-69d3-4676-b6d6-d8157dd1580a
 
@@ -38,7 +36,7 @@ https://github.com/kaarthik108/snowChat/assets/53030784/24105e23-69d3-4676-b6d6-
    cd snowchat
    pip install -r requirements.txt
 
-3. Set up your `OPENAI_API_KEY`, `ACCOUNT`, `USER_NAME`, `PASSWORD`, `ROLE`, `DATABASE`, `SCHEMA`,  `WAREHOUSE`, `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` in project directory `secrets.toml`. Create an supabase account to get supabase url and api key
+3. Set up your `OPENAI_API_KEY`, `ACCOUNT`, `USER_NAME`, `PASSWORD`, `ROLE`, `DATABASE`, `SCHEMA`,  `WAREHOUSE`, `SUPABASE_URL`, `SUPABASE_SERVICE_KEY`, and `REPLICATE_API_TOKEN` in project directory `secrets.toml`. Create a supabase account to get supabase url and api key, create a [replicate](https://replicate.com/account/api-tokens) account to get an api key
 
 4. Make you're schemas and store them in docs folder that matches you're database. Update schema in `/sql`,`/docs` and `snowChat/utils/snowddl.py`
 

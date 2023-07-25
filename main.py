@@ -14,6 +14,14 @@ snow_ddl = Snowddl()
 
 st.title("snowChat")
 st.caption("Talk your way through data")
+model = st.radio(
+    "",
+    options=["GPT-3.5", "LLama-2"],
+    index=0,
+    horizontal=True,
+)
+
+st.session_state["model"] = model
 
 INITIAL_MESSAGE = [
     {"role": "user", "content": "Hi!"},
@@ -55,6 +63,9 @@ if "messages" not in st.session_state.keys():
 if "history" not in st.session_state:
     st.session_state["history"] = []
 
+if "model" not in st.session_state:
+    st.session_state["model"] = model
+
 # Prompt for user input and save
 if prompt := st.chat_input():
     st.session_state.messages.append({"role": "user", "content": prompt})
@@ -66,8 +77,7 @@ for message in st.session_state.messages:
         True if message["role"] == "data" else False,
     )
 
-chain = load_chain()
-conn = SnowflakeConnection().get_session()
+chain = load_chain(st.session_state["model"])
 
 
 def append_chat_history(question, answer):
@@ -90,7 +100,7 @@ def append_message(content, role="assistant", display=False):
 def handle_sql_exception(query, conn, e, retries=2):
     append_message("Uh oh, I made an error, let me try to fix it..")
     error_message = (
-        "I have an SQL query that's causing an error. FIX The SQL query by searching the schema definition:  \n```sql\n"
+        "You gave me a wrong SQL. FIX The SQL query by searching the schema definition:  \n```sql\n"
         + query
         + "\n```\n Error message: \n "
         + str(e)
@@ -105,6 +115,9 @@ def handle_sql_exception(query, conn, e, retries=2):
 
 
 def execute_sql(query, conn, retries=2):
+    if re.match(r"^\s*(drop|alter|truncate|delete|insert|update)\s", query, re.I):
+        append_message("Sorry, I can't execute queries that can modify the database.")
+        return None
     try:
         return conn.sql(query).collect()
     except SnowparkSQLException as e:
@@ -119,6 +132,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
         )["answer"]
         append_message(result)
         if get_sql(result):
+            conn = SnowflakeConnection().get_session()
             df = execute_sql(get_sql(result), conn)
             if df is not None:
                 append_message(df, "data", True)
