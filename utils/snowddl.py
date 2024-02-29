@@ -20,7 +20,8 @@ class Snowddl:
             # "PAYMENTS": "sql/ddl_payments.sql",
             # "PRODUCTS": "sql/ddl_products.sql",
             # "CUSTOMER_DETAILS": "sql/ddl_customer.sql",
-            "WEB_CLICKSTREAM_SOPHI3":"sql/ddl_fake_sophi3.sql"
+            "WEB_CLICKSTREAM_SOPHI3":"sql/ddl_fake_sophi3.sql",
+            "WEATHER":"sql/ddl_weather.sql"
         }
 
         ddl_dict = {}

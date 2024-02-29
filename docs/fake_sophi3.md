@@ -14,3 +14,4 @@ This table contains information about web browsing events made by customers when
 - REGION: STRING - Region that customers come from
 - SECTION: STRING - Category of the article such as "homepage","investing" and "realestate"
 - TIMESTAMP_EST: TIMESTAMP format - Timestamp that customer access the website and read articles
+- EVENT_FINGERPRINT STRING - UUID of each event
